@@ -1,0 +1,22 @@
+---
+interface Props {
+  name: string;
+  url: string;
+}
+
+const { name, url } = Astro.props;
+
+const getPokemonId = (url: string) => {
+  const urlParts = url.split("/");
+  return urlParts[urlParts.length - 2];
+};
+
+
+const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getPokemonId(url)}.png`
+
+---
+
+<div class="bg-slate-900 p-4 rounded-lg shadow-lg">
+    <img src={ srcImage } alt={name} class="w-full h-48 object-cover rounded-lg">
+    <h2 class="text-2xl font-bold text-center">{name}</h2>
+</div>

@@ -1,17 +1,39 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import type { PokemonListResponse } from "../interfaces/pokemon-list.response";
+import PokemonCard from "../components/pokemons/PokemonCard.astro";
+
+const getPokemons = async () => {
+    const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+    if(!resp.ok ){
+        console.error('Error al obtener los datos');
+    }
+    const { results } = (await resp.json()) as PokemonListResponse;
+    
+    return results;
+}
+
+const pokemons = await getPokemons();
+
+
 
 ---
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="text-center text-5xl text-blue-500 font-bold">
-        Hola 🚀
+<MainLayout title="Pokemon | Home">
+    <h1 class="text-center text-5xl font-bold my-4">
+        Pokemons 🚀
     </h1>
-</body>
-</html>
+
+
+    <section
+        aria-label="Listado de pokemons"
+        class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4"
+    >
+
+        {
+            pokemons.map((pokemon) => (
+                <PokemonCard name={pokemon.name} url={pokemon.url} />
+            ))
+        }
+
+    </section>
+</MainLayout>
