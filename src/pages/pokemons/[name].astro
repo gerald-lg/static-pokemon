@@ -38,7 +38,7 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
             <a href="/"> Volver </a>
             <h1 class="text-7xl font-bold text-center capitalize">{ name }</h1>
         </div>
-        <PokemonCard name={name} url={url} />
+        <PokemonCard name={name} url={url} isBig />
         <audio controls class="mt-10">
             <source src={audioSrc} type="audio/ogg" />
         </audio>
