@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { PokemonListResponse } from "../../interfaces/pokemon-list.response";
+
+import MainLayout from "../../layouts/MainLayout.astro";
+import PokemonCard from "../../components/pokemons/PokemonCard.astro";
+
+
+// static sites generations
+export const getStaticPaths = (async () => {
+
+    const resp = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    
+    if (!resp.ok) {
+        return [];
+    }
+
+    const { results } = await resp.json() as PokemonListResponse;
+
+    return results.map((pokemon: { name: string, url: string }) => ({
+        params: { name: pokemon.name },
+        props: { name: pokemon.name, url: pokemon.url },
+    }));
+
+}) satisfies GetStaticPaths;
+
+const { name } = Astro.params;
+const { url } = Astro.props;
+
+const id = url.split("/").at(-2);
+const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+
+---
+
+<MainLayout title={`Pokemon - ${name}`}>
+    <section class="mt-10 mx-10 flex flex-col items-center justify-center">
+        <div class="mb-10">
+            <a href="/"> Volver </a>
+            <h1 class="text-7xl font-bold text-center capitalize">{ name }</h1>
+        </div>
+        <PokemonCard name={name} url={url} />
+        <audio controls class="mt-10">
+            <source src={audioSrc} type="audio/ogg" />
+        </audio>
+    </section>
+</MainLayout>
+
+<style>
+    a{
+        @apply hover:underline text-blue-500 font-semibold;
+    }
+</style>
