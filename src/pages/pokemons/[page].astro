@@ -1,8 +1,8 @@
 ---
 import type { GetStaticPaths } from "astro";
-import MainLayout from "../../layouts/MainLayout.astro";
-import type { PokemonListResponse } from "../../interfaces/pokemon-list.response";
-import PokemonCard from "../../components/pokemons/PokemonCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
 
 export const getStaticPaths = (async ({paginate}) => {
 
@@ -16,7 +16,6 @@ const { page } = Astro.props;
 
 const currentPage = page.currentPage;
 const isFirstPage = currentPage === 1;
-console.log({page});
 ---
 <MainLayout title="Pokemon | Home">
     <h1 class="text-center text-5xl font-bold my-4">

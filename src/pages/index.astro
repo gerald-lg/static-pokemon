@@ -1,7 +1,7 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import type { PokemonListResponse } from "../interfaces/pokemon-list.response";
-import PokemonCard from "../components/pokemons/PokemonCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
 
 const getPokemons = async () => {
     const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
