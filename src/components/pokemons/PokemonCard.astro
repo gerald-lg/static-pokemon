@@ -13,8 +13,8 @@ const getPokemonId = (url: string) => {
 };
 
 
-const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getPokemonId(url)}.png`
-
+const id = getPokemonId(url);
+const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 ---
 
 <a 
@@ -22,5 +22,5 @@ const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
   class:list={[`p-4 rounded-lg`, { 'bg-slate-900 shadow-lg': !isBig }]}
   >
     <img transition:name={`${name}-image`} src={ srcImage } alt={name} class="w-full object-cover rounded-lg">
-    <h2 class:list={[`font-bold text-center capitalize`, {'text-3xl': isBig, 'text-xl': !isBig}]}>#{getPokemonId(url)} - {name}</h2>
+    <h2 class:list={[`font-bold text-center capitalize`, {'text-3xl': isBig, 'text-xl': !isBig}]}>#{id} - {name}</h2>
 </a>
