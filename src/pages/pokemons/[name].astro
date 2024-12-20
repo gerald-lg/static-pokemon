@@ -34,7 +34,11 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 <MainLayout title={`Pokémon - #${id} ${name}`} description=`Información del pokémon ${name}` image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}>
     <section class="mt-10 mx-10 flex flex-col items-center justify-center">
         <div class="mb-10">
-            <a href="/"> Volver </a>
+
+            <button onclick="history.back()" class="text-blue-500 text-xl font-semibold hover:underline ">
+                Volver
+            </button>
+
             <h1 class="text-7xl font-bold text-center capitalize">{ name }</h1>
         </div>
         <PokemonCard name={name} url={url} isBig />

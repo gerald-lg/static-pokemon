@@ -1,4 +1,5 @@
 ---
+import Navbar from '@components/shared/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props{
@@ -32,8 +33,10 @@ const { title = siteInfo.title, description = siteInfo.title, image } = Astro.pr
 
     <ClientRouter />
 </head>
-<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
-    <main>
+<body class="bg-slate-800 text-slate-100">
+
+    <Navbar />
+    <main class="m-auto max-w-3xl p-4">
         <slot />
     </main>
 </body>
